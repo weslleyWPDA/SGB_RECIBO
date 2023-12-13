@@ -36,8 +36,8 @@
                                                 required />
                                         </div>
                                         <div class="mb-3">
-                                            <input class="form-control" type="password" placeholder="Digite sua Senha"
-                                                name="password"
+                                            <input class="form-control upper" type="password"
+                                                placeholder="Digite sua Senha" name="password"
                                                 style="width: 100%;height: 30px;text-align: left;font-weight: bold;font-size: 15px;color: rgb(0,0,0);"
                                                 required />
                                         </div>
