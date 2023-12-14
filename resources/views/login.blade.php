@@ -73,12 +73,12 @@
     @include('sweetalert::alert')
     <x-botoes.js-textoUpper />
     <x-select2.select2 />
+    <style>
+        .lbtn:hover {
+            transform: scale(1.08);
+            opacity: 0.9;
+        }
+    </style>
 </body>
 
 </html>
-<style>
-    .lbtn:hover {
-        transform: scale(1.08);
-        opacity: 0.9;
-    }
-</style>

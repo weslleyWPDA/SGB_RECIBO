@@ -1,6 +1,7 @@
 <x-layouts.layouts titulo='RELATÓRIO'>
-    <x-botoes.botao_href color='gray' label='VOLTAR' link="{{ route('u_inicio') }}" />
-
+    <nav>
+        <x-botoes.botao_href color='gray' label='VOLTAR' link="{{ route('u_inicio') }}" />
+    </nav>
     <div class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center"
         style="border-style: none;border-radius: 10px; margin-top:30px">
         <form method="post" action="{{ route('adm_rec_rela_ac') }}" class="text-center d-grid user"

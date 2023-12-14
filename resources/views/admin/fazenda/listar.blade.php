@@ -41,10 +41,10 @@
                 @endforeach
             </tbody>
         </table>
+        <x-datatables.datatables tamanho='10' botoes='null' />
         <script>
             function perguntaDelete() {
                 return confirm('DESEJA REALMENTE DELETAR ?');
             }
         </script>
-        <x-datatables.datatables tamanho='10' botoes='null' />
-        </x-layouts.adm_layouts>
+</x-layouts.layouts>

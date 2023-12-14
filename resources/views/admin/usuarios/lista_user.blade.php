@@ -50,4 +50,4 @@
         @push('script')
             <x-datatables.datatables tamanho='10' botoes='null' />
         @endpush
-        </x-layouts.adm_layouts>
+</x-layouts.layouts>

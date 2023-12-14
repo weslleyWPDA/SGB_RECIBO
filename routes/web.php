@@ -18,7 +18,6 @@ Route::group(['middleware' => 'UsuarioLogin',], function () {
     Route::get('/relatorio', [RelatoriosCont::class, 'tela_relatorio'])->name('adm_rec_rela');
     Route::post('/relatorio/lista', [RelatoriosCont::class, 'tab_relatorio'])->name('adm_rec_rela_ac');
 });
-
 // sessao do ADM
 Route::group(['middleware' => 'AdminLogin',], function () {
     // usuarios

@@ -61,7 +61,6 @@
         </style>
     @endpush
     @push('script')
-        <x-botoes.js-textoUpper />
         <x-select2.select2 />
     @endpush
-    </x-layouts.adm_layouts>
+</x-layouts.layouts>

@@ -166,7 +166,6 @@
         <input hidden value="{{ Auth::user()->id }}" name="user_id" />
     </form>
     @push('script')
-        <x-botoes.js-textoUpper />
         <x-scripts.mask_js />
         <x-scripts.mask_cpfcnpj />
         {{-- <script src="{{ URL::asset('/publico/js/datalist-css.js') }}"></script> --}}

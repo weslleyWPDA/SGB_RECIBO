@@ -110,12 +110,10 @@
                         </div>
                     </section>
                 </div>
-
                 <style>
                     * {
                         -webkit-print-color-adjust: exact;
                     }
-
 
                     @media print {
                         body * {
