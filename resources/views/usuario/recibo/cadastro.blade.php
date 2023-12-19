@@ -4,7 +4,7 @@
             <x-botoes.botoes type='buttom' color='gray' label='VOLTAR' />
         </a>
     </nav>
-    <form class="text-center d-grid user"
+    <form class="text-center d-grid user" autocomplete="off"
         style="width: 86%; height:auto;background:var(--cor_tela_u);padding: 1px;border-radius: 5px;margin-right: 7%;margin-left: 7%;border-width: 5px;margin-top: 10px;"
         method="post" action="{{ route('recibo.store') }}">
         @csrf
@@ -19,7 +19,7 @@
                 {{-- recebi --}}
                 <input class=" d-block upper" type="text"
                     style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="on" title="Recebiemos" name="recebi" list="recebi-list" />
+                    autocomplete="off" title="Recebiemos" name="recebi" list="recebi-list" />
                 <datalist id="recebi-list">
                     @foreach ($recebi as $item)
                         <option value="{{ $item->recebi }}">{{ $item->recebi }}</option>
@@ -168,11 +168,5 @@
     @push('script')
         <x-scripts.mask_js />
         <x-scripts.mask_cpfcnpj />
-        {{-- <script src="{{ URL::asset('/publico/js/datalist-css.js') }}"></script> --}}
     @endpush
-    <style>
-        datalist {
-            background-color: white
-        }
-    </style>
 </x-layouts.layouts>

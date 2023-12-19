@@ -43,9 +43,9 @@
                 IMPORTANCIA
                 DE:
                 {{-- valor --}}
-                <input class=" d-block upper" type="text" id="dinheiro"
+                <input class=" d-block" type="text" id="dinheiro"
                     style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" name="valor" value="{{ $recibo->valor ?? null }}" />
+                    autocomplete="off" name="valor" value="{{ number_format($recibo->valor, 2, ',', '.') }}  " />
             </label>
             <label class="form-label"
                 style="width: 23%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-left: 2%;">CPF

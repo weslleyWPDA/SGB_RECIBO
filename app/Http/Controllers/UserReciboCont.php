@@ -171,7 +171,7 @@ class UserReciboCont extends Controller
         $str = str_replace('.', '', $r->valor);
         $valor = str_replace(',', '.', $str);
 
-        recibo::where('id', $r->id)->update([
+        recibo::where('id', $id)->update([
             "recebi" => $r->recebi,
             "endereco" => $r->endereco,
             "valor" => $valor,
