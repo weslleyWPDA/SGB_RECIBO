@@ -24,7 +24,7 @@
                         <td class="tdtable">{{ $registro->emitente }}</td>
                         <td class="tdtable">R$ {{ number_format($registro->valor, 2, ',', '.') }} </td>
                         <td class="tdtable">{{ date('d/m/Y', strtotime($registro->data)) }}</td>
-                        <td class="tdtable">{{ $registro->referente }}</td>
+                        <td class="tdtable referente">{{ $registro->referente }}</td>
                         <td class="tdtable">{{ $registro->fazenda->name ?? 'ADMIN' }}</td>
                         <td hidden class="tdtable">
                         </td>
@@ -36,4 +36,9 @@
     @push('script')
         <x-datatables.rela_datatables tamanho='50' botoes='dom' />
     @endpush
+    <style>
+        .referente {
+            font-size: 10px !important
+        }
+    </style>
 </x-layouts.layouts>
