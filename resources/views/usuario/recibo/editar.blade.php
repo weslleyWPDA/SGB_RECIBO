@@ -1,6 +1,6 @@
 <x-layouts.layouts titulo="Editar">
     <nav>
-        <a href="javascript:history.back()" style="text-decoration: none">
+        <a href="{{ route('recibo.index') }}" style="text-decoration: none">
             <x-botoes.botoes type='buttom' color='gray' label='VOLTAR' />
         </a>
     </nav>
@@ -130,9 +130,7 @@
         <div class="d-inline-block" style="width: 100%;background: rgba(255,255,255,0);margin: 5px;">
             <button style="border:none;font-weight: 800;margin:5px;color:white" type="submit"
                 class="btn btn-warning btns botoes">EDITAR</button>
-            <a href="{{ route('recibo.index') }}" style="text-decoration: none">
-                <x-botoes.botoes type='buttom' color='red' label='CANCELAR' />
-            </a>
+            <a href="{{ route('recibo.index') }}" type="button" class="btn btn-danger btns botoes">CANCELAR</a>
         </div>
         <input hidden value="{{ $recibo->fazenda_id }}" name="fazenda_id" />
         <input hidden value="{{ $recibo->user_id }}" name="user_id" />

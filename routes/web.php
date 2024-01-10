@@ -12,6 +12,9 @@ Route::group(['middleware' => 'UsuarioLogin',], function () {
     Route::get('/inicio', [ULoginController::class, 'u_inicio'])->name('u_inicio');
     // recibo
     Route::resource('recibo', UserReciboCont::class);
+    Route::get('/retorno/{user_id}', [UserReciboCont::class, 'retorno'])->name('retorno');
+    // Route::get('/teste', [UserReciboCont::class, 'teste'])->name('teste');
+
     // recibo ajax listar
     Route::get('/listar/listarajax', [UserReciboCont::class, 'recibo_ajax'])->name('recibo_ajax');
     //relatorio e recibo

@@ -15,6 +15,8 @@ use App\Models\referente;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use mysqli;
+use PDO;
 use phputil\extenso\Extenso;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -38,8 +40,8 @@ class UserReciboCont extends Controller
         $referente = referente::where('fazenda_id', Auth::user()->fazenda_id)->get();
         $cidade = cidade::where('fazenda_id', Auth::user()->fazenda_id)->get();
         $emitente = emitente::where('fazenda_id', Auth::user()->fazenda_id)->get();
-        $cpf_emitente = cpf_emitente::where('fazenda_id', Auth::user()->fazenda_id)->get();
-        $end_emitente = end_emitente::where('fazenda_id', Auth::user()->fazenda_id)->get();
+        // $cpf_emitente = cpf_emitente::where('fazenda_id', Auth::user()->fazenda_id)->get();
+        // $end_emitente = end_emitente::where('fazenda_id', Auth::user()->fazenda_id)->get();
         $cpf_recebido = cpf_recebido::where('fazenda_id', Auth::user()->fazenda_id)->get();
 
         return view('usuario.recibo.cadastro', compact(
@@ -48,8 +50,6 @@ class UserReciboCont extends Controller
             'referente',
             'cidade',
             'emitente',
-            'cpf_emitente',
-            'end_emitente',
             'cpf_recebido'
         ));
     }
@@ -67,7 +67,7 @@ class UserReciboCont extends Controller
             'cidade' =>  'required',
             'emitente' =>  'required',
             'data' =>  'required',
-            'cpf_emitente' =>  'required|min:14|max:18',
+            'cpf_emitente' =>  'required',
             'end_emitente' =>  'required',
             'fazenda_id' => 'nullable',
             'user_id' => 'required',
@@ -93,17 +93,16 @@ class UserReciboCont extends Controller
             $cidade->cidade = request('cidade');
             $cidade->save();
             // ===============
-            $emitente = emitente::firstOrNew(['emitente' =>  request('emitente'), 'fazenda_id' =>  request('fazenda_id')]);
-            $emitente->emitente = request('emitente');
+            $emitente = emitente::firstOrNew(
+                [
+                    'emitente' =>  $validacao['emitente'],
+                ]
+            );
+            $emitente->emitente =  $validacao['emitente'];
+            $emitente->cpf_emitente =  $validacao['cpf_emitente'];
+            $emitente->fazenda_id =  $validacao['fazenda_id'];
+            $emitente->end_emitente =  $validacao['end_emitente'];
             $emitente->save();
-            // ===============
-            $cpf_emitente = cpf_emitente::firstOrNew(['cpf_emitente' =>  request('cpf_emitente'), 'fazenda_id' =>  request('fazenda_id')]);
-            $cpf_emitente->cpf_emitente = request('cpf_emitente');
-            $cpf_emitente->save();
-            // ===============
-            $end_emitente = end_emitente::firstOrNew(['end_emitente' =>  request('end_emitente'), 'fazenda_id' =>  request('fazenda_id')]);
-            $end_emitente->end_emitente = request('end_emitente');
-            $end_emitente->save();
             // ===============
             $cpf_recebido = cpf_recebido::firstOrNew(['cpf_recebido' =>  request('cpf_recebido'), 'fazenda_id' =>  request('fazenda_id')]);
             $cpf_recebido->cpf_recebido = request('cpf_recebido');
@@ -222,5 +221,36 @@ class UserReciboCont extends Controller
             ->orderby('id', 'DESC');
 
         return DataTables::of($recibo)->make(true);
+    }
+    // public function teste()
+    // {
+    //     return view('teste');
+    // }
+    public function retorno($emitente_input)
+    {
+        // Get the user id
+
+        // Database connection
+
+        if ($emitente_input !== "") {
+
+            // Get corresponding first name and
+            // last name for that user id
+            $query = emitente::select()->where('emitente', 'like', $emitente_input)->first();
+
+            // $row = mysqli_fetch_array($query);
+
+            // Get the first name
+            $emitente_cpfcnpj = $query["cpf_emitente"];
+            $emitente_end = $query["end_emitente"];
+
+            // Get the first name
+        }
+
+        // Store it in a array
+        $result = array("$emitente_cpfcnpj", "$emitente_end");
+        // Send in JSON encoded form
+        $myJSON = json_encode($result);
+        echo $myJSON;
     }
 }

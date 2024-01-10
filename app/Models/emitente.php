@@ -12,5 +12,7 @@ class emitente extends Model
     protected $fillable = [
         'emitente',
         'fazenda_id',
+        'cpf_emitente',
+        'end_emitente'
     ];
 }

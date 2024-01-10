@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('emitente', function (Blueprint $table) {
             $table->id();
             $table->string('emitente');
+            $table->string('cpf_emitente');
+            $table->string('end_emitente');
             $table->integer('fazenda_id');
             $table->timestamps();
         });

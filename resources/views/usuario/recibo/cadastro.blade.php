@@ -113,7 +113,8 @@
                 {{-- emitente --}}
                 <input class=" d-block upper" type="text"
                     style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" title="Recebiemos" name="emitente" list="emitente" />
+                    autocomplete="off" title="Recebiemos" name="emitente" list="emitente" id="emitente_input"
+                    onkeyup="GetDetail(this.value)" value="" />
                 <datalist id="emitente">
                     @foreach ($emitente as $item)
                         <option value="{{ $item->emitente }}">{{ $item->emitente }}</option>
@@ -127,12 +128,7 @@
                 {{-- CPF --}}
                 <input class=" upper cpfOuCnpj2" type="text" name="cpf_emitente"
                     style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px"
-                    required autocomplete="off" title="Recebiemos" list="emitente_cpf" />
-                <datalist id="emitente_cpf" style="margin-top: 26px">
-                    @foreach ($cpf_emitente as $item)
-                        <option value="{{ $item->cpf_emitente }}">{{ $item->cpf_emitente }}</option>
-                    @endforeach
-                </datalist>
+                    required autocomplete="off" title="Recebiemos" list="emitente_cpf" id="emitente_cpfcnpj" />
             </label>
         </div>
         <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3"
@@ -142,12 +138,7 @@
                 {{-- endereço --}}
                 <input class=" d-block upper" type="text"
                     style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px"
-                    required autocomplete="off" name="end_emitente" list="emitente_endereco" />
-                <datalist id="emitente_endereco">
-                    @foreach ($end_emitente as $item)
-                        <option value="{{ $item->end_emitente }}">{{ $item->end_emitente }}</option>
-                    @endforeach
-                </datalist>
+                    required autocomplete="off" name="end_emitente" list="emitente_endereco" id="emitente_end" />
             </label>
             <label class="form-label"
                 style="width: 23%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-left: 2%;">RG
@@ -168,5 +159,35 @@
     @push('script')
         <x-scripts.mask_js />
         <x-scripts.mask_cpfcnpj />
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            function GetDetail(str) {
+                if (str.length == 0) {
+                    document.getElementById("emitente_cpfcnpj").value = "";
+                    document.getElementById("emitente_end").value = "";
+                    return;
+                } else {
+                    // Creates a new XMLHttpRequest object
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+
+                        if (this.readyState == 4 &&
+                            this.status == 200) {
+
+                            var myObj = JSON.parse(this.responseText);
+
+                            document.getElementById("emitente_cpfcnpj").value = myObj[0];
+                            document.getElementById("emitente_end").value = myObj[1];
+
+                        }
+                    };
+                    // xhttp.open("GET", "filename", true);
+                    xmlhttp.open("GET", "/retorno/" + str, true);
+                    // Sends the request to the server
+                    xmlhttp.send();
+                }
+            }
+        </script>
     @endpush
 </x-layouts.layouts>
