@@ -159,8 +159,8 @@
     @push('script')
         <x-scripts.mask_js />
         <x-scripts.mask_cpfcnpj />
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        {{-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> --}}
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
         <script>
             function GetDetail(str) {
                 if (str.length == 0) {

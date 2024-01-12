@@ -1,4 +1,4 @@
-<x-layouts.layouts titulo="Relatório de Recibos">
+<x-layouts.layouts titulo="RECIBOS {{ Auth::user()->fazenda->name }}">
     <nav>
         <x-botoes.botao_href color='gray' label='VOLTAR' link="{{ route('adm_rec_rela') }}" />
     </nav>
@@ -22,7 +22,7 @@
                         <td class="tdtable">{{ $registro->id }}</td>
                         <td class="tdtable">{{ $registro->recebi }}</td>
                         <td class="tdtable">{{ $registro->emitente }}</td>
-                        <td class="tdtable">R$ {{ number_format($registro->valor, 2, ',', '.') }} </td>
+                        <td class="tdtable">{{ number_format($registro->valor, 2, ',', '.') }} </td>
                         <td class="tdtable">{{ date('d/m/Y', strtotime($registro->data)) }}</td>
                         <td class="tdtable referente">{{ $registro->referente }}</td>
                         <td class="tdtable">{{ $registro->fazenda->name ?? 'ADMIN' }}</td>

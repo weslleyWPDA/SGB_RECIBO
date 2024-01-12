@@ -166,3 +166,7 @@ th,
 td {
     vertical-align: middle !important
 }
+
+.botoes:hover {
+    transform: scale(1.2)
+}
