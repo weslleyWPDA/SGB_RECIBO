@@ -76,8 +76,9 @@ class UsuarioAdmCont extends Controller
      */
     public function update(Request $r, string $id)
     {
+
         $validator = Validator::make($r->all(), [
-            'name' => Rule::unique('users')->whereNull('delete')->ignore($id),
+            'name' => Rule::unique('Users')->whereNull('delete')->ignore($id),
         ], [
             "name.unique" => "Usuario ja em uso!",
         ]);
@@ -88,8 +89,8 @@ class UsuarioAdmCont extends Controller
                 ->withInput();
         } else {
             if (User::where('id', $id)->update([
-                'name' => $r->name, 'password' => Hash::make($r->pass),
-                'fazenda_id' => $r->f_id, 'admin' =>  $r->nivel,
+                'name' => $r->name, 'password' => Hash::make($r->password),
+                'fazenda_id' => $r->fazenda_id, 'admin' =>  $r->admin,
             ])) {
                 toast('Editado com Sucesso!', 'success');
                 return redirect()->route('usuarios.index');
