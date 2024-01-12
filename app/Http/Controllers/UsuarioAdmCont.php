@@ -78,7 +78,7 @@ class UsuarioAdmCont extends Controller
     {
 
         $validator = Validator::make($r->all(), [
-            'name' => Rule::unique('Users')->whereNull('delete')->ignore($id),
+            'name' => Rule::unique('users')->whereNull('delete')->ignore($id),
         ], [
             "name.unique" => "Usuario ja em uso!",
         ]);
