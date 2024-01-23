@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('recebi', function (Blueprint $table) {
             $table->id();
             $table->string('recebi');
+            $table->string('cpf_recebido');
             $table->integer('fazenda_id');
             $table->timestamps();
         });

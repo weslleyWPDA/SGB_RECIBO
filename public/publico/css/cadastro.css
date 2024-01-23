@@ -1,0 +1,131 @@
+        label {
+            margin-top: -7px !important;
+        }
+
+        .receipt-form {
+            width: 86%;
+            height: auto;
+            background: var(--cor_tela_u);
+            padding: 1px;
+            border-radius: 5px;
+            margin-right: 7%;
+            margin-left: 7%;
+            border-width: 5px;
+            margin-top: 10px;
+            text-align: center;
+            display: grid;
+            grid-template-columns: auto;
+        }
+
+        .receipt-title {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 25px;
+            width: 100%;
+            margin-top: 2px;
+            margin-bottom: -2px;
+        }
+
+        .receipt-hr {
+            width: 80%;
+            margin-right: 10%;
+            margin-left: 10%;
+            margin-top: 5px;
+        }
+
+        .receipt-flex-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px;
+            margin-bottom: 39px;
+            margin-top: -10px !important;
+        }
+
+        .custom-label {
+            width: 90%;
+            color: rgb(255, 255, 255);
+            font-size: 11px;
+            text-align: left;
+            /* Adicione outros estilos conforme necessário */
+        }
+
+        .custom-input {
+            width: 100%;
+            height: auto;
+            color: rgb(0, 0, 0);
+            margin: 0px;
+            font-size: 14px;
+            padding: 2px;
+            /* Adicione outros estilos conforme necessário */
+        }
+
+        .custom-flex-container {
+            width: 100%;
+            /* margin-top: -6px; */
+            border-radius: 10px;
+            border-width: 10px;
+            border-color: rgb(0, 0, 0);
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-styled-container {
+            width: 100%;
+            margin-top: -6px;
+            border-radius: 0px;
+            background: rgba(94, 91, 91, 0.12);
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-width: 5px;
+            border-color: rgba(74, 36, 10, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mb-3 {
+            margin-bottom: 1rem;
+            /* Adicione outras classes de margem conforme necessário */
+        }
+
+        .label_menor {
+            width: 60%;
+            color: rgb(255, 255, 255);
+            font-size: 11px;
+            text-align: left;
+            margin: 0px;
+            margin-bottom: 5px;
+            margin-right: 5%;
+        }
+
+        .label_menor2 {
+            width: 23%;
+            color: rgb(255, 255, 255);
+            font-size: 11px;
+            text-align: left;
+            margin: 0px;
+            margin-bottom: 5px;
+            margin-left: 2%;
+        }
+
+        .input_menor {
+            width: 100%;
+            height: auto;
+            color: rgb(0, 0, 0);
+            margin: 0px;
+            font-size: 14px;
+            padding: 2px
+        }
+
+        .input_menor2 {
+            width: 100%;
+            height: auto;
+            color: rgb(0, 0, 0);
+            margin: 0px;
+            font-size: 14px;
+            padding: 2px
+        }

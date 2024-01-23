@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('emitente');
             $table->string('cpf_emitente');
             $table->string('end_emitente');
+            $table->string('rg');
             $table->integer('fazenda_id');
             $table->timestamps();
         });

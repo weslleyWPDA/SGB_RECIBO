@@ -13,6 +13,7 @@ class recebi extends Model
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
         'recebi',
+        'cpf_recebido',
         'fazenda_id',
     ];
 }

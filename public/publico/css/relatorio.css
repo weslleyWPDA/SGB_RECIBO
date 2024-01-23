@@ -1,0 +1,103 @@
+hr {
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.wrapper {
+    width: 56%;
+    padding: 1px;
+    height: auto;
+    margin-bottom: -10px
+}
+
+.custom-flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.custom-form {
+    width: 80%;
+    background: var(--cor_telas_relatorio);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    display: grid;
+}
+
+.titulo {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 22px;
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.labels {
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.date-range-container,
+.date-input-container {
+    width: 100%;
+    display: inline-block;
+}
+
+.date-label {
+    width: 28%;
+    border-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    height: 10px;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.custom-input {
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    text-align: left;
+    height: 30px;
+    border-radius: 0px;
+    width: 25%;
+    margin-left: 0;
+    margin-right: 3px;
+    margin-top: -15px !important
+}
+
+.date-separator {
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button-container {
+    margin-top: 10px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.custom-button {
+    border: none;
+    font-weight: 800;
+    margin: 5px;
+    color: white;
+}
+
+.custom-button.btn-success {
+    background-color: #28a745;
+    /* ou a cor desejada para o botão GERAR */
+}
+
+.custom-button.btn-danger {
+    background-color: #dc3545;
+    /* ou a cor desejada para o botão CANCELAR */
+}

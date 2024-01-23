@@ -13,6 +13,7 @@ class emitente extends Model
         'emitente',
         'fazenda_id',
         'cpf_emitente',
-        'end_emitente'
+        'end_emitente',
+        'rg'
     ];
 }

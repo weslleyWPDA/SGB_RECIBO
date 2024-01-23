@@ -13,8 +13,7 @@ Route::group(['middleware' => 'UsuarioLogin',], function () {
     // recibo
     Route::resource('recibo', UserReciboCont::class);
     Route::get('/retorno/{user_id}', [UserReciboCont::class, 'retorno'])->name('retorno');
-    // Route::get('/teste', [UserReciboCont::class, 'teste'])->name('teste');
-
+    Route::get('/retornoRecebi/{recebi}', [UserReciboCont::class, 'retornoRecebi'])->name('retornoRecebi');
     // recibo ajax listar
     Route::get('/listar/listarajax', [UserReciboCont::class, 'recibo_ajax'])->name('recibo_ajax');
     //relatorio e recibo

@@ -40,17 +40,12 @@ class UserReciboCont extends Controller
         $referente = referente::where('fazenda_id', Auth::user()->fazenda_id)->get();
         $cidade = cidade::where('fazenda_id', Auth::user()->fazenda_id)->get();
         $emitente = emitente::where('fazenda_id', Auth::user()->fazenda_id)->get();
-        // $cpf_emitente = cpf_emitente::where('fazenda_id', Auth::user()->fazenda_id)->get();
-        // $end_emitente = end_emitente::where('fazenda_id', Auth::user()->fazenda_id)->get();
-        $cpf_recebido = cpf_recebido::where('fazenda_id', Auth::user()->fazenda_id)->get();
-
         return view('usuario.recibo.cadastro', compact(
             'recebi',
             'endereco',
             'referente',
             'cidade',
             'emitente',
-            'cpf_recebido'
         ));
     }
 
@@ -77,8 +72,14 @@ class UserReciboCont extends Controller
         ]);
 
         try {
-            $recebi = recebi::firstOrNew(['recebi' =>  request('recebi'), 'fazenda_id' =>  request('fazenda_id')]);
-            $recebi->recebi = request('recebi');
+
+            $recebi = recebi::firstOrNew(
+                [
+                    'recebi' =>  $validacao['recebi'], 'fazenda_id' =>  request('fazenda_id')
+                ]
+            );
+            $recebi->recebi =  $validacao['recebi'];
+            $recebi->cpf_recebido =  $validacao['cpf_recebido'];
             $recebi->save();
             // ===============
             $endereco = endereco::firstOrNew(['endereco' =>  request('endereco'), 'fazenda_id' =>  request('fazenda_id')]);
@@ -102,11 +103,8 @@ class UserReciboCont extends Controller
             $emitente->cpf_emitente =  $validacao['cpf_emitente'];
             $emitente->fazenda_id =  $validacao['fazenda_id'];
             $emitente->end_emitente =  $validacao['end_emitente'];
+            $emitente->rg =  $validacao['rg'] ?? '';
             $emitente->save();
-            // ===============
-            $cpf_recebido = cpf_recebido::firstOrNew(['cpf_recebido' =>  request('cpf_recebido'), 'fazenda_id' =>  request('fazenda_id')]);
-            $cpf_recebido->cpf_recebido = request('cpf_recebido');
-            $cpf_recebido->save();
             // ===============
 
         } catch (Exception) {
@@ -201,7 +199,7 @@ class UserReciboCont extends Controller
         return redirect()->back();
     }
     /**
-     *
+     * =====================================================
      */
     public function recibo_ajax()
     {
@@ -222,33 +220,46 @@ class UserReciboCont extends Controller
 
         return DataTables::of($recibo)->make(true);
     }
-    // public function teste()
-    // {
-    //     return view('teste');
-    // }
+    /**
+     * =====================================================
+     */
     public function retorno($emitente_input)
     {
-        // Get the user id
-
-        // Database connection
-
         if ($emitente_input !== "") {
+
+            $query = emitente::where('emitente', 'like', $emitente_input)->first();
+            // Get the first name
+            $emitente_cpfcnpj = $query["cpf_emitente"];
+            $emitente_end = $query["end_emitente"];
+            $rg = $query["rg"];
+        }
+
+        // Store it in a array
+        $result = array("$emitente_cpfcnpj", "$emitente_end", "$rg");
+        // Send in JSON encoded form
+        $myJSON = json_encode($result);
+        echo $myJSON;
+    }
+    /**
+     * =====================================================
+     */
+    public function retornoRecebi($recebi)
+    {
+        if ($recebi !== "") {
 
             // Get corresponding first name and
             // last name for that user id
-            $query = emitente::select()->where('emitente', 'like', $emitente_input)->first();
+            $query = recebi::where('recebi', 'like', $recebi)->first();
 
             // $row = mysqli_fetch_array($query);
 
             // Get the first name
-            $emitente_cpfcnpj = $query["cpf_emitente"];
-            $emitente_end = $query["end_emitente"];
-
+            $cpf_recebido = $query["cpf_recebido"];
             // Get the first name
         }
 
         // Store it in a array
-        $result = array("$emitente_cpfcnpj", "$emitente_end");
+        $result = array("$cpf_recebido");
         // Send in JSON encoded form
         $myJSON = json_encode($result);
         echo $myJSON;

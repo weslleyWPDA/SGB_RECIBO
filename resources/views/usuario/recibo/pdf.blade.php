@@ -59,12 +59,14 @@
                                 class="form-label d-table"
                                 style="height:44px;width: 95%;margin-bottom: 1%;font-size: 16px;font-weight: bold;margin-top: 2px;margin-left: 1%;">
                                 {{ $registro->referente ?? null }}
-                            </label></div>
+                            </label>
+                        </div>
                         <div class="text-end"
                             style="background:rgb(240, 238, 238);border-top: solid;border-bottom: solid;text-align: right;height: 42px;padding-bottom:50px">
                             <label class="form-label d-table d-md-flex justify-content-md-end align-items-md-center"
                                 style="width: 91%;font-size: 16px;font-weight: bold;margin-left: 5%;margin-top: 15px">
-                                {{ $registro->cidade ?? null }}, {{ date('d/m/Y', strtotime($registro->data)) ?? null }}
+                                {{ $registro->cidade ?? null }},
+                                {{ date('d/m/Y', strtotime($registro->data)) ?? null }}
                             </label>
                         </div>
                         <div style="margin-left: 10PX;margin-right: 10PX;"><label class="form-label"

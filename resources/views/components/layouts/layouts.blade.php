@@ -15,7 +15,7 @@
 <body id="page-top">
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0"
-            style="background:var(--cor_layout);width:auto">
+            style="background:var(--cor_layout);width:200px">
             <div class="container-fluid d-flex flex-column p-0">
                 <ul class="navbar-nav text-center text-light" id="accordionSidebar" style="text-align: center; ">
                     <li class="nav-item text-center" style="width: auto;">
@@ -33,26 +33,25 @@
                             <label>{{ Auth::user()->fazenda->name ?? 'ERRO' }}</label>
                             </label>
                         </section>
-                        {{-- logout --}}
-                        <a href="{{ route('logout') }}" class="btn btn-primary btns w-100" type="buttom"
-                            style="background-color:red;border:none;border-radius:0px;font-weight: 800; margin: 0 0 10px 0;">SAIR
-                        </a>
-                        {{-- dropdown --}}
-                        <x-drop-navbar.drop-navbar label='RECIBOS'>
-                            <a class="dropdown-item" href="{{ route('recibo.create') }}">Novo</a>
-                            <a class="dropdown-item" href="{{ route('recibo.index') }}">Recibos</a>
-                        </x-drop-navbar.drop-navbar>
-                        <x-drop-navbar.drop-navbar label='RELATÓRIO'>
-                            <a class="dropdown-item" href="{{ route('adm_rec_rela') }}">Recibos</a>
-                        </x-drop-navbar.drop-navbar>
-                        <div style="display: {{ Auth::user()->admin == null ? 'none' : '' }}">
-                            <x-drop-navbar.drop-navbar label='CONFIGURAÇÕES'>
-                                <a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a>
-                                <a class="dropdown-item" href="{{ route('fazendas.index') }}">Fazendas</a>
-                            </x-drop-navbar.drop-navbar>
-                        </div>
-                        {{-- fim dropdown --}}
                     </li>
+                    {{-- logout --}}
+                    <a href="{{ route('logout') }}" class="btn btn-primary btns w-100" type="buttom"
+                        style="background-color:red;border:none;border-radius:0px;font-weight: 800; margin: 0 0 10px 0;">SAIR
+                    </a>
+                    {{-- dropdown --}}
+                    <x-drop-navbar.drop-navbar label='RECIBOS'>
+                        <a class="dropdown-item" href="{{ route('recibo.create') }}">Novo</a>
+                        <a class="dropdown-item" href="{{ route('recibo.index') }}">Recibos</a>
+                    </x-drop-navbar.drop-navbar>
+                    <x-drop-navbar.drop-navbar label='RELATÓRIO'>
+                        <a class="dropdown-item" href="{{ route('adm_rec_rela') }}">Recibos</a>
+                    </x-drop-navbar.drop-navbar>
+                    <div style="display: {{ Auth::user()->admin == null ? 'none' : '' }}">
+                        <x-drop-navbar.drop-navbar label='CONFIGURAÇÕES'>
+                            <a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a>
+                            <a class="dropdown-item" href="{{ route('fazendas.index') }}">Fazendas</a>
+                        </x-drop-navbar.drop-navbar>
+                    </div>
                 </ul>
             </div>
             <p style="color:white;font-size:7px;text-align:left;height:10px;position:absolute">
@@ -70,8 +69,8 @@
     </div>
     <script src="{{ URL::asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
     <x-botoes.js-textoUpper />
-    @stack('table-script')
     @stack('script')
+    @stack('table-script')
     @include('sweetalert::alert')
 </body>
 

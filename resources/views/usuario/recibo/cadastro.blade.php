@@ -1,25 +1,20 @@
 <x-layouts.layouts titulo="Cadastro">
     <nav>
-        <a href="javascript:history.back()" style="text-decoration: none">
+        <a href="javascript:history.back()">
             <x-botoes.botoes type='buttom' color='gray' label='VOLTAR' />
         </a>
     </nav>
-    <form class="text-center d-grid user" autocomplete="off"
-        style="width: 86%; height:auto;background:var(--cor_tela_u);padding: 1px;border-radius: 5px;margin-right: 7%;margin-left: 7%;border-width: 5px;margin-top: 10px;"
-        method="post" action="{{ route('recibo.store') }}">
+    <link href="{{ URL::asset('publico/css/cadastro.css') }}" rel="stylesheet">
+    <form class="receipt-form" autocomplete="off" method="post" action="{{ route('recibo.store') }}">
         @csrf
-        <h1 style="color: #ffffff;font-weight: bold;font-size: 25px;width: 100%;margin-top: 2px;margin-bottom: -2px;">
-            RECIBO</h1>
-        <hr style="width: 80%;margin-right: 10%;margin-left: 10%;margin-top: 5px;" />
-        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3"
-            style="width: 100%;margin: 0px;margin-bottom: 39px;margin-top: -12px;">
-            <label class="form-label"
-                style="width: 90%;color: rgb(255,255,255);font-size: 11px;text-align: left;">RECEBI
+        <h1 class="receipt-title">RECIBO</h1>
+        <hr class="receipt-hr" />
+        <div class="receipt-flex-container d-lg-flex justify-content-lg-center align-items-lg-center mb-3">
+            <label class="custom-label">RECEBI
                 DE:
                 {{-- recebi --}}
-                <input class=" d-block upper" type="text"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" title="Recebiemos" name="recebi" list="recebi-list" />
+                <input class="custom-input upper" type="text" required autocomplete="off" title="Recebiemos"
+                    name="recebi" list="recebi-list" onkeyup="GetDetail2(this.value)" id="recebi" />
                 <datalist id="recebi-list">
                     @foreach ($recebi as $item)
                         <option value="{{ $item->recebi }}">{{ $item->recebi }}</option>
@@ -27,14 +22,11 @@
                 </datalist>
             </label>
         </div>
-        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3"
-            style="width: 100%;margin-top: -16px;">
-            <label class="form-label"
-                style="width: 90%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;">ENDEREÇO:
+        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3">
+            <label class="custom-label">ENDEREÇO:
                 {{-- endereço --}}
-                <input class=" d-block upper" type="text"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" title="Recebiemos" name="endereco" list="endereco" />
+                <input class=" d-block upper custom-input" type="text" required autocomplete="off" title="Recebiemos"
+                    name="endereco" list="endereco" />
                 <datalist id="endereco">
                     @foreach ($endereco as $item)
                         <option value="{{ $item->endereco }}">{{ $item->endereco }}</option>
@@ -43,40 +35,32 @@
             </label>
         </div>
         {{-- quantidade e o cpf do recebido --}}
-        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3"
-            style="width: 100%;margin-top: -6px;border-radius: 10px;border-width: 10px;border-color: rgb(0,0,0);font-size: 13px;">
-            <label class="form-label"
-                style="width: 60%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-right: 5%;">A
+        <div class="custom-flex-container mb-3">
+            <label class="label_menor">A
                 IMPORTANCIA
-                DE:
+                DE (R$):
                 {{-- valor --}}
-                <input class=" d-block upper" type="text" id="dinheiro"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" name="valor" />
+                <input class=" input_menor upper" type="text" id="dinheiro" required autocomplete="off"
+                    name="valor" />
             </label>
-            <label class="form-label"
-                style="width: 23%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-left: 2%;">CPF
+            <label class="label_menor2">CPF
                 / CNPJ
                 PAGADOR:
                 {{-- CPF recebido --}}
-                <input class=" upper cpfOuCnpj" type="text"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" list="cpf_receb" name="cpf_recebido" />
-                <datalist id="cpf_receb" style="margin-top: 26px">
-                    @foreach ($cpf_recebido as $item)
+                <input class="input_menor2 upper cpfOuCnpj" type="text" required autocomplete="off" list="cpf_receb"
+                    name="cpf_recebido" id="cpf_recebido" />
+                <datalist id="cpf_receb">
+                    @foreach ($recebi as $item)
                         <option value="{{ $item->cpf_recebido }}">{{ $item->cpf_recebido }}</option>
                     @endforeach
                 </datalist>
             </label>
         </div>
-        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3"
-            style="width: 100%;margin-top: -6px;">
-            <label class="form-label"
-                style="width: 90%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;">REFERENTE:
+        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3">
+            <label class="custom-label">REFERENTE:
                 {{-- referente --}}
-                <input class=" d-block upper " type="text"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" title="Recebiemos" name="referente" list="referente" />
+                <input class="custom-input upper" required autocomplete="off" title="Recebiemos" name="referente"
+                    list="referente" />
                 <datalist id="referente">
                     @foreach ($referente as $item)
                         <option value="{{ $item->referente }}">{{ $item->referente }}</option>
@@ -84,72 +68,72 @@
                 </datalist>
             </label>
         </div>
-        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3"
-            style="width: 100%;margin-top: -6px;border-radius: 0px;background: rgba(94, 91, 91, 0.12);padding-top: 5px;padding-bottom: 5px;border-width: 5px;border-color: rgba(74,36,10,0);">
-            <label class="form-label"
-                style="width: 60%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-right: 5%;">CIDADE:
+        <div class="custom-styled-container mb-3">
+            <label class="label_menor">CIDADE
+                - UF:
                 {{-- cidade --}}
-                <input class=" d-block  upper" type="text"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" title="Recebiemos" name="cidade" list="cidade" />
+                <input class=" input_menor upper" required autocomplete="off" title="Recebiemos" name="cidade"
+                    list="cidade" />
                 <datalist id="cidade">
                     @foreach ($cidade as $item)
                         <option value="{{ $item->cidade }}">{{ $item->cidade }}</option>
                     @endforeach
                 </datalist>
             </label>
-            <label class="form-label"
-                style="width: 23%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-left: 2%;">DATA:
+            <label class="label_menor2">DATA:
                 {{-- data --}}
-                <input class="" type="date" value="<?php echo date('Y-m-d'); ?>" required
-                    style="font-size: 14px; padding:2px;text-align:center;height: auto;width: 100%;color: rgb(0,0,0);"
-                    name="data" />
+                <input class=" input_menor2 upper" type="date" value="<?php echo date('Y-m-d'); ?>" required name="data" />
             </label>
         </div>
-        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3"
-            style="width: 100%;margin-top: -14px;border-radius: 10px;border-width: 10px;border-color: rgb(0,0,0);font-size: 13px;">
-            <label class="form-label"
-                style="width: 60%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-right: 5%;">EMITENTE:
+        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3">
+            <label class="label_menor">EMITENTE:
                 {{-- emitente --}}
-                <input class=" d-block upper" type="text"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px" required
-                    autocomplete="off" title="Recebiemos" name="emitente" list="emitente" id="emitente_input"
+                <input class=" input_menor upper" type="text" required autocomplete="off" title="Recebiemos"
+                    name="emitente" list="emitente-list" id="emitente" id="emitente_input"
                     onkeyup="GetDetail(this.value)" value="" />
-                <datalist id="emitente">
+                <datalist id="emitente-list">
                     @foreach ($emitente as $item)
                         <option value="{{ $item->emitente }}">{{ $item->emitente }}</option>
                     @endforeach
                 </datalist>
             </label>
-            <label class="form-label"
-                style="width: 23%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-left: 2%;">CPF
+            <label class="label_menor2">CPF
                 / CNPJ
                 EMITENTE:
                 {{-- CPF --}}
-                <input class=" upper cpfOuCnpj2" type="text" name="cpf_emitente"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px"
-                    required autocomplete="off" title="Recebiemos" list="emitente_cpf" id="emitente_cpfcnpj" />
+                <input class=" input_menor2 upper cpfOuCnpj2" type="text" name="cpf_emitente" required
+                    autocomplete="off" title="Recebiemos" list="emitente_cpf" id="emitente_cpfcnpj" />
+                <datalist id="emitente_cpf">
+                    @foreach ($emitente as $item)
+                        <option value="{{ $item->cpf_emitente }}">{{ $item->cpf_emitente }}</option>
+                    @endforeach
+                </datalist>
             </label>
         </div>
-        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3"
-            style="width: 100%;margin-top: -14px;border-radius: 10px;border-width: 10px;border-color: rgb(0,0,0);font-size: 13px;">
-            <label class="form-label"
-                style="width: 60%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-right: 5%;">ENDEREÇO:
+        <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3">
+            <label class="label_menor">ENDEREÇO:
                 {{-- endereço --}}
-                <input class=" d-block upper" type="text"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px"
-                    required autocomplete="off" name="end_emitente" list="emitente_endereco" id="emitente_end" />
+                <input class=" input_menor upper" type="text" required autocomplete="off" name="end_emitente"
+                    list="emitente_endereco" id="emitente_end" />
+                <datalist id="emitente_endereco">
+                    @foreach ($emitente as $item)
+                        <option value="{{ $item->end_emitente }}">{{ $item->end_emitente }}</option>
+                    @endforeach
+                </datalist>
             </label>
-            <label class="form-label"
-                style="width: 23%;color: rgb(255,255,255);font-size: 11px;text-align: left;margin: 0px;margin-bottom: 5px;margin-left: 2%;">RG
+            <label class="label_menor2">RG
                 / INSCRIÇÃO:
                 {{-- rg --}}
-                <input class=" upper " type="text" name="rg"
-                    style="width: 100%;height: auto;color: rgb(0,0,0);margin: 0px;font-size: 14px; padding:2px"
-                    autocomplete="off" />
+                <input class=" input_menor2 upper " type="text" name="rg" id="rg" autocomplete="off"
+                    list="rg_emit" />
+                <datalist id="rg_emit">
+                    @foreach ($emitente as $item)
+                        <option value="{{ $item->rg }}">{{ $item->rg }}</option>
+                    @endforeach
+                </datalist>
             </label>
         </div>
-        <div class="d-inline-block" style="width: 100%;background: rgba(255,255,255,0);margin: 5px;">
+        <div class="d-inline-block">
             <x-botoes.botoes type='submit' color='green' label='CADASTRAR' />
             <x-botoes.nav-botoes type='reset' color='red' label='LIMPAR' width='auto' />
         </div>
@@ -159,35 +143,6 @@
     @push('script')
         <x-scripts.mask_js />
         <x-scripts.mask_cpfcnpj />
-        {{-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> --}}
-        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
-        <script>
-            function GetDetail(str) {
-                if (str.length == 0) {
-                    document.getElementById("emitente_cpfcnpj").value = "";
-                    document.getElementById("emitente_end").value = "";
-                    return;
-                } else {
-                    // Creates a new XMLHttpRequest object
-                    var xmlhttp = new XMLHttpRequest();
-                    xmlhttp.onreadystatechange = function() {
-
-                        if (this.readyState == 4 &&
-                            this.status == 200) {
-
-                            var myObj = JSON.parse(this.responseText);
-
-                            document.getElementById("emitente_cpfcnpj").value = myObj[0];
-                            document.getElementById("emitente_end").value = myObj[1];
-
-                        }
-                    };
-                    // xhttp.open("GET", "filename", true);
-                    xmlhttp.open("GET", "/retorno/" + str, true);
-                    // Sends the request to the server
-                    xmlhttp.send();
-                }
-            }
-        </script>
+        <x-scripts.jscadastro />
     @endpush
 </x-layouts.layouts>
