@@ -3,23 +3,23 @@
         <a href='{{ route('u_inicio') }}' class="btn btn-secondary btns">VOLTAR</a>
         <a href='{{ route('usuarios.create') }}' class="btn btn-success btns">CADASTRAR</a>
     </nav>
-    <div class='tabeladiv' style="border-radius:10px;padding:10px;margin:10px;background:white">
+    <div class='tabeladiv'>
         <label style='font-size:20px;color:black;text-align:left;width:100%;font-weight:600'>
             USUARIOS
         </label>
         <table id="datatable_tabela" class="display compact" style="width:100%">
             <thead>
                 <tr class="trtable">
-                    <th class="text-center">OPÇOES</th>
-                    <th class="text-center">USUARIO</th>
-                    <th class="text-center">ACESSO</th>
-                    <th class="text-center">FAZENDA</th>
+                    <th>OPÇOES</th>
+                    <th>USUARIO</th>
+                    <th>ACESSO</th>
+                    <th>FAZENDA</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($usuarios as $registro)
                     <tr>
-                        <td class="tdtable" style="width: 15%">
+                        <td class="tdtable">
                             <form style="display:inline-block" action="{{ route('usuarios.edit', $registro->id) }}"
                                 method="POST">
                                 @csrf
