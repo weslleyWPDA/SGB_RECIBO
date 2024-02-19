@@ -23,8 +23,9 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4" style="font-size: 25px;font-weight: 900;">SGB
-                                            RECIBOS</h4>
+                                        <h4 class="text-dark mb-4" style="font-size: 25px;font-weight: 900;">
+                                            {{ env('APP_NAME') }} teste
+                                        </h4>
                                     </div>
                                     <hr>
                                     <form method="POST" action="{{ route('login_user') }}" class="user">
