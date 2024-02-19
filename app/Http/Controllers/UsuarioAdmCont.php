@@ -76,7 +76,6 @@ class UsuarioAdmCont extends Controller
      */
     public function update(Request $r, string $id)
     {
-
         $validator = Validator::make($r->all(), [
             'name' => Rule::unique('users')->whereNull('delete')->ignore($id),
         ], [

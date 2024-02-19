@@ -20,7 +20,7 @@
         {{-- checkbox admin --}}
         <label style="color:white;font-weight: bold">ADMIN
             <input type="checkbox" id="admin" {{ $usuario->admin == 1 ? 'checked' : '' }} name="admin"
-                style="margin-top:15px;min-width: 20px;min-height: 20px">
+                style="margin-top:15px;min-width: 20px;min-height: 20px" value="1">
         </label>
         {{-- select fazenda --}}
         <label style="color:white;text-align:left;width:100%;font-size: 12px">Fazenda:
