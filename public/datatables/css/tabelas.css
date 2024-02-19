@@ -86,13 +86,11 @@ td {
 }
 
 .table_icon {
-    margin: 5px 0 5px 0;
     font-size: 18px;
     cursor: pointer;
     display: inline-block;
     background-color: #00000000;
-    background-color: #00000000;
-    margin: 0 5px 5px 0px;
+    margin: 0 8px 0px 0px;
     padding: 0px;
 }
 
@@ -101,13 +99,11 @@ td {
 }
 
 .table_icon_ajax {
-    margin: 0 0px 0px 0px;
     font-size: 18px;
     cursor: pointer;
     display: inline-block;
     background-color: #00000000;
-    background-color: #00000000;
-    margin: 1px 5px 5px 5px;
+    margin: 0 8px 0px 0px;
     padding: 0px;
 }
 
@@ -169,4 +165,8 @@ td {
 
 .botoes:hover {
     transform: scale(1.2)
+}
+
+.tabeladiv {
+    margin: 10px !important;
 }

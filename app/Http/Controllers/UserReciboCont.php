@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\cidade;
-use App\Models\cpf_emitente;
-use App\Models\cpf_recebido;
 use App\Models\emitente;
-use App\Models\end_emitente;
 use App\Models\endereco;
 use App\Models\recebi;
 use App\Models\recibo;
@@ -15,8 +12,6 @@ use App\Models\referente;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use mysqli;
-use PDO;
 use phputil\extenso\Extenso;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -48,7 +43,6 @@ class UserReciboCont extends Controller
             'emitente',
         ));
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -68,7 +62,6 @@ class UserReciboCont extends Controller
             'user_id' => 'required',
             'rg' => 'nullable',
             'cpf_recebido' =>  'nullable',
-
         ]);
 
         try {
@@ -179,8 +172,6 @@ class UserReciboCont extends Controller
             "cpf_emitente" => $r->cpf_emitente,
             "end_emitente" => $r->end_emitente,
             "rg" => $r->rg,
-            "fazenda_id" => $r->fazenda_id,
-            "user_id" => $r->user_id,
             "cpf_recebido" => $r->cpf_recebido,
 
         ]);
@@ -227,7 +218,7 @@ class UserReciboCont extends Controller
     {
         if ($emitente_input !== "") {
 
-            $query = emitente::where('emitente', 'like', $emitente_input)->first();
+            $query = emitente::where('emitente', 'like', $emitente_input)->where('fazenda_id', 'like', Auth::user()->fazenda_id)->first();
             // Get the first name
             $emitente_cpfcnpj = $query["cpf_emitente"];
             $emitente_end = $query["end_emitente"];
@@ -249,7 +240,7 @@ class UserReciboCont extends Controller
 
             // Get corresponding first name and
             // last name for that user id
-            $query = recebi::where('recebi', 'like', $recebi)->first();
+            $query = recebi::where('recebi', 'like', $recebi)->where('fazenda_id', 'like', Auth::user()->fazenda_id)->first();
 
             // $row = mysqli_fetch_array($query);
 

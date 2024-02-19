@@ -1,8 +1,6 @@
-<x-layouts.layouts titulo="Cadastro">
+<x-layouts.layouts>
     <nav>
-        <a href="javascript:history.back()">
-            <x-botoes.botoes type='buttom' color='gray' label='VOLTAR' />
-        </a>
+        <a href="{{ route('u_inicio') }}" type="button" class="btn btn-secondary btns">VOLTAR</a>
     </nav>
     <link href="{{ URL::asset('publico/css/cadastro.css') }}" rel="stylesheet">
     <form class="receipt-form" autocomplete="off" method="post" action="{{ route('recibo.store') }}">
@@ -82,7 +80,8 @@
             </label>
             <label class="label_menor2">DATA:
                 {{-- data --}}
-                <input class=" input_menor2 upper" type="date" value="<?php echo date('Y-m-d'); ?>" required name="data" />
+                <input class=" input_menor2 upper text-center" type="date" value="<?php echo date('Y-m-d'); ?>" required
+                    name="data" />
             </label>
         </div>
         <div class="d-lg-flex justify-content-lg-center align-items-lg-center mb-3">
@@ -134,8 +133,8 @@
             </label>
         </div>
         <div class="d-inline-block">
-            <x-botoes.botoes type='submit' color='green' label='CADASTRAR' />
-            <x-botoes.nav-botoes type='reset' color='red' label='LIMPAR' width='auto' />
+            <button type="submit" class="btn btn-success btns">CADASTRAR</button>
+            <button type='reset' class="btn btn-danger btns">LIMPAR</button>
         </div>
         <input hidden value="{{ Auth::user()->fazenda_id }}" name="fazenda_id" />
         <input hidden value="{{ Auth::user()->id }}" name="user_id" />

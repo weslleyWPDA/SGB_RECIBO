@@ -30,7 +30,7 @@
                                     <form method="POST" action="{{ route('login_user') }}" class="user">
                                         @csrf
                                         <div class="mb-3">
-                                            <input autocomplete="off" class="upper form-control "
+                                            <input autocomplete="off" class="upper form-control"
                                                 placeholder="Digite seu Usuario" name="name"
                                                 style="width: 100%;height: 30px;text-align: left;font-weight: bold;font-size: 15px;color: rgb(0,0,0);"
                                                 required />
@@ -70,6 +70,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ URL::asset('/publico/js/jquery.js') }}"></script>
     @include('sweetalert::alert')
     <x-botoes.js-textoUpper />
     <x-select2.select2 />

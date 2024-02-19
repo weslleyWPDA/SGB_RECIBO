@@ -1,7 +1,7 @@
 <x-layouts.layouts titulo="Recibos">
     <div class='tabeladiv' style="border-radius:10px;padding:5px;background:white;margin:10px;">
         <table id="datatable_tabela" class="display compact w-100">
-            <h3 class="w-100 text-center" style="font-weight: bold;font-size:22px">
+            <h3 class="w-100 text-left" style="font-weight: bold;font-size:20px">
                 RECIBOS
             </h3>
             <thead>
@@ -20,6 +20,6 @@
         </table>
     </div>
     @push('script')
-        <x-datatables.ajax_datatables tamanho='25' botoes='null' />
+        <x-datatables.ajax_datatables tamanho='100' botoes='null' />
     @endpush
 </x-layouts.layouts>

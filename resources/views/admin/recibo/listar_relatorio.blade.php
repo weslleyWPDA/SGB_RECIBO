@@ -1,11 +1,11 @@
 <x-layouts.layouts titulo="RECIBOS {{ Auth::user()->fazenda->name }}">
     <nav>
-        <x-botoes.botao_href color='gray' label='VOLTAR' link="{{ route('adm_rec_rela') }}" />
+        <a href='{{ redirect()->back()->getTargetUrl() }}' class="btn btn-secondary btns">VOLTAR</a>
     </nav>
-    <div class='tabeladiv' style="border-radius:10px;padding:5px;margin:10px;background:white">
-        <table id="datatable_tabela" class="display compact w-100">
+    <div class='tabeladiv'>
+        <table id="datatable_tabela" class="display compact" style="width: 100%">
             <thead>
-                <tr class="trtable">
+                <tr>
                     <th>NUMERO</th>
                     <th>PAGADOR</th>
                     <th>EMITENTE</th>

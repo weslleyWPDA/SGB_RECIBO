@@ -21,8 +21,6 @@
     }
 
     .select2-selection--single {
-        padding-top: 0px !important;
-        padding-bottom: 5px !important;
         font-size: 16px !important;
         color: black !important;
     }
@@ -30,11 +28,8 @@
     .select2-selection {
         font-weight: 500 !important;
         font-size: 16px !important;
-        height: 30px !important;
-        margin-bottom: 7px !important;
-        border-radius: 0px !important;
-        padding-top: 0px !important;
         color: black !important;
+        height: 30px !important;
     }
 
     .select2-results__option--selectable {
@@ -48,7 +43,7 @@
     .select2-selection__placeholder {
         font-weight: 500 !important;
         text-align: center !important;
-        font-size: 15px !important;
+        font-size: 14px !important;
         color: black !important;
     }
 </style>

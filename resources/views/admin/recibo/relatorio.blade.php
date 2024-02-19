@@ -1,9 +1,8 @@
-<x-layouts.layouts titulo='RELATÓRIO'>
+<x-layouts.layouts>
     <nav>
-        <x-botoes.botao_href color='gray' label='VOLTAR' link="{{ route('u_inicio') }}" />
+        <a href='{{ route('u_inicio') }}' class="btn btn-secondary btns">VOLTAR</a>
     </nav>
     <div class="custom-flex-container">
-
         <form method="post" action="{{ route('adm_rec_rela_ac') }}" class="custom-form">
             @csrf
             <h1 class="titulo"> RELATÓRIO DE RECIBOS</h1>
@@ -33,9 +32,8 @@
             </div>
             {{-- botoes --}}
             <div class="button-container">
-                <button type="submit" class="custom-button btn btn-success btns botoes">GERAR</button>
-                <a href="{{ route('u_inicio') }}" type="button"
-                    class="custom-button btn btn-danger btns botoes">CANCELAR</a>
+                <button type="submit" class="custom-button btn btn-success btns">GERAR</button>
+                <a href='{{ redirect()->back()->getTargetUrl() }}' class="btn btn-danger btns">CANCELAR</a>
             </div>
         </form>
         @push('css')

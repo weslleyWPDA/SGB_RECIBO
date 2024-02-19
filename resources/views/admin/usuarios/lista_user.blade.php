@@ -1,12 +1,10 @@
-<x-layouts.layouts titulo="Listar">
+<x-layouts.layouts>
     <nav>
-        <a href="javascript:history.back()" style="text-decoration: none">
-            <x-botoes.botoes type='buttom' color='gray' label='VOLTAR' />
-        </a>
-        <x-botoes.botao_href color='green' label='CADASTRAR' link="{{ route('usuarios.create') }}" />
+        <a href='{{ route('u_inicio') }}' class="btn btn-secondary btns">VOLTAR</a>
+        <a href='{{ route('usuarios.create') }}' class="btn btn-success btns">CADASTRAR</a>
     </nav>
     <div class='tabeladiv' style="border-radius:10px;padding:10px;margin:10px;background:white">
-        <label style='font-size:2vw;color:black;text-align:center;width:100%;font-weight:600'>
+        <label style='font-size:20px;color:black;text-align:left;width:100%;font-weight:600'>
             USUARIOS
         </label>
         <table id="datatable_tabela" class="display compact" style="width:100%">

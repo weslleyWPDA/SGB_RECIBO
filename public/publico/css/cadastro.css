@@ -1,4 +1,4 @@
-        label {
+        form label {
             margin-top: -7px !important;
         }
 
@@ -20,7 +20,7 @@
         .receipt-title {
             color: #ffffff;
             font-weight: bold;
-            font-size: 25px;
+            font-size: 20px;
             width: 100%;
             margin-top: 2px;
             margin-bottom: -2px;

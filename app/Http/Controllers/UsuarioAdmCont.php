@@ -67,7 +67,7 @@ class UsuarioAdmCont extends Controller
         if (!$usuario) {
             return redirect(route('adm_usu_lista'));
         }
-        $fazenda = fazenda::all();
+        $fazenda = fazenda::whereNull('delete')->get();
         return view('admin.usuarios.edita_usuario', compact('fazenda', 'usuario'));
     }
 
